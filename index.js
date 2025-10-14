@@ -13,6 +13,8 @@ const singlePalette = {
     colors: ['', '', '', '']
 }
 
+const libraryWrapper = document.getElementById('library-wrapper');
+
 
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = 1; i <= 4; i++) {
@@ -30,6 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 singlePalette.colors[i - 1] = colorValue;
             })
         }
+    }
+
+    if (libraryWrapper) {
+        load();
     }
 })
 
@@ -50,5 +56,24 @@ function saveToLocalStorage() {
 
 
 function load() {
- console.log('hi');
+    let loadExistingPalettes = JSON.parse(localStorage.getItem('allPalettes') || [])
+
+    if (loadExistingPalettes.length === 0) {
+        window.alert('No existing palettes');
+    }
+    else {
+        loadExistingPalettes.forEach(palette => {
+            let paletteInfo = document.createElement('div');
+            paletteInfo.classList.add('palette-wrapper');
+            paletteInfo.innerHTML = `
+            <h2 class="palette-title">${palette.title}</h2>
+        <div class="box" id="color1" style="background-color: ${palette.colors[0]};">${palette.colors[0]}</div>
+        <div class="box" id="color2" style="background-color: ${palette.colors[1]};">${palette.colors[1]}</div>
+        <div class="box" id="color3" style="background-color: ${palette.colors[2]};">${palette.colors[2]}</div>
+        <div class="box" id="color4" style="background-color: ${palette.colors[3]};">${palette.colors[3]}</div>`
+
+            libraryWrapper.appendChild(paletteInfo);
+        });
+        console.log(loadExistingPalettes);
+    }
 }
