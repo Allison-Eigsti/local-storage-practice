@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Practice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input id="palette-title" type="text" placeholder="Title">
+
+    <div class="palette-wrapper">
+        <div class="box" id="color1">Color 1</div>
+            <input type="color" id="colorPicker1" style="display: none;">
+        <div class="box" id="color2">Color 2</div>
+            <input type="color" id="colorPicker2" style="display: none;">
+        <div class="box" id="color3">Color 3</div>
+            <input type="color" id="colorPicker3" style="display: none;">
+        <div class="box" id="color4">Color 4</div>
+            <input type="color" id="colorPicker4" style="display: none;">
+    </div>
+    <button onclick="saveToLocalStorage()">Save Colors to Local Storage</button>
+    <script src="./index.js"></script>
+</body>
+</html>
