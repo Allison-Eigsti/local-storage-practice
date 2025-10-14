@@ -46,7 +46,8 @@ function saveToLocalStorage() {
     
     let newPalette = {...singlePalette, colors: [...singlePalette.colors]};
 
-    let loadExistingPalettes = JSON.parse(localStorage.getItem('allPalettes') || [])
+    let loadExistingPalettes = JSON.parse(localStorage.getItem('allPalettes')) || [];
+
     loadExistingPalettes.push(newPalette);
 
     localStorage.setItem('allPalettes', JSON.stringify(loadExistingPalettes));
@@ -56,7 +57,7 @@ function saveToLocalStorage() {
 
 
 function load() {
-    let loadExistingPalettes = JSON.parse(localStorage.getItem('allPalettes') || [])
+    let loadExistingPalettes = JSON.parse(localStorage.getItem('allPalettes')) || [];
 
     if (loadExistingPalettes.length === 0) {
         window.alert('No existing palettes');
