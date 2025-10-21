@@ -21,20 +21,10 @@ function load() {
             <input type="color" id="colorPicker3" style="display: none;">
         <div class="box" id="color4" style="background-color: ${palette.colors[3]};">${palette.colors[3]}</div>
             <input type="color" id="colorPicker4" style="display: none;">`
-        
-        // <div class="btn-wrapper">
-        // <button class="btn-delete" onclick="deletePalette('${palette}')">Delete</button>
-        // </div>`
+
 
             libraryWrapper.appendChild(paletteInfo);
 
-            // const dropDown = document.getElementById('drop-down');
-            // document.addEventListener('click', (e) => {
-            //     if (e.target.matches('.select')) {
-            //         dropDown.classList.toggle('closed');
-            //         console.log(dropDown);
-            //     };
-            // })
         });
 
         // dynamically edit color palettes
@@ -72,16 +62,6 @@ function editLocalStorage(paletteTitle, colorValue, initialColor) {
     localStorage.setItem('allPalettes', JSON.stringify(loadExistingPalettes));
 }
 
-
-function editPalette(palette) {
-    const paletteToEdit = JSON.parse(localStorage.getItem('allPalettes'));
-    console.log(paletteToEdit);
-}
-
-function deletePalette(palette) {
-    const paletteToEdit = JSON.parse(localStorage.getItem('palette'));
-    console.log(paletteToEdit);
-}
 
 
 export { load };
