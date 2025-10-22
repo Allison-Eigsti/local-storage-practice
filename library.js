@@ -13,43 +13,43 @@ function load() {
             paletteInfo.classList.add('palette-wrapper');
             paletteInfo.innerHTML = `
             <h2 class="palette-title">${palette.title}</h2>
-        <div class="box" id="color1" style="background-color: ${palette.colors[0]};">${palette.colors[0]}</div>
-            <input type="color" id="colorPicker1" style="display: none;">
-        <div class="box" id="color2" style="background-color: ${palette.colors[1]};">${palette.colors[1]}</div>
-            <input type="color" id="colorPicker2" style="display: none;">        
-        <div class="box" id="color3" style="background-color: ${palette.colors[2]};">${palette.colors[2]}</div>
-            <input type="color" id="colorPicker3" style="display: none;">
-        <div class="box" id="color4" style="background-color: ${palette.colors[3]};">${palette.colors[3]}</div>
-            <input type="color" id="colorPicker4" style="display: none;">`
+        <div class="box" data-color="color1" style="background-color: ${palette.colors[0]};">${palette.colors[0]}</div>
+            <input type="color" data-picker="colorPicker1" style="display: none;">
+        <div class="box" data-color="color2" style="background-color: ${palette.colors[1]};">${palette.colors[1]}</div>
+            <input type="color" data-picker="colorPicker2" style="display: none;">        
+        <div class="box" data-color="color3" style="background-color: ${palette.colors[2]};">${palette.colors[2]}</div>
+            <input type="color" data-picker="colorPicker3" style="display: none;">
+        <div class="box" data-color="color4" style="background-color: ${palette.colors[3]};">${palette.colors[3]}</div>
+            <input type="color" data-picker="colorPicker4" style="display: none;">`
 
 
             libraryWrapper.appendChild(paletteInfo);
 
-        });
-
-        // dynamically edit color palettes
-        for (let i = 1; i <= 4; i++) {
-            let color = document.getElementById(`color${i}`);
-            let picker = document.getElementById(`colorPicker${i}`);
-            let initialColor = color.textContent;
-            let paletteTitle = document.querySelector('.palette-title').textContent;
+                    // dynamically edit color palettes
+            for (let i = 1; i <= 4; i++) {
+                let color = paletteInfo.querySelector(`[data-color="color${i}"]`);
+                console.log(color);
+                let picker = paletteInfo.querySelector(`[data-picker="colorPicker${i}"]`);
+                let initialColor = color.textContent;
+                let paletteTitle = paletteInfo.querySelector('.palette-title').textContent;
             
-            if (color && picker) {
-                color.addEventListener('click', () => {
-                    picker.click();
-                })
+                if (color && picker) {
+                    color.addEventListener('click', () => {
+                        picker.click();
+                    })
             
-                picker.addEventListener('input', (event) => {
-                    const colorValue = event.target.value;
-                    color.style.backgroundColor = colorValue;
-                    color.textContent = colorValue;
-                    singlePalette.colors[i - 1] = colorValue;
-                    if (initialColor !== colorValue) {
-                        editLocalStorage(paletteTitle, colorValue, initialColor);
-                    }
-                })
+                    picker.addEventListener('input', (event) => {
+                        const colorValue = event.target.value;
+                        color.style.backgroundColor = colorValue;
+                        color.textContent = colorValue;
+                        singlePalette.colors[i - 1] = colorValue;
+                        if (initialColor !== colorValue) {
+                            editLocalStorage(paletteTitle, colorValue, initialColor);
+                        }
+                    })
+                }
             }
-        }
+        });
     }
 }
 
