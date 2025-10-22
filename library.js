@@ -20,7 +20,10 @@ function load() {
         <div class="box" data-color="color3" style="background-color: ${palette.colors[2]};">${palette.colors[2]}</div>
             <input type="color" data-picker="colorPicker3" style="display: none;">
         <div class="box" data-color="color4" style="background-color: ${palette.colors[3]};">${palette.colors[3]}</div>
-            <input type="color" data-picker="colorPicker4" style="display: none;">`
+            <input type="color" data-picker="colorPicker4" style="display: none;">
+        <div class="btn-wrapper">
+            <button class="delete-btn">Delete</button>
+        </div>`
 
 
             libraryWrapper.appendChild(paletteInfo);
@@ -28,7 +31,6 @@ function load() {
                     // dynamically edit color palettes
             for (let i = 1; i <= 4; i++) {
                 let color = paletteInfo.querySelector(`[data-color="color${i}"]`);
-                console.log(color);
                 let picker = paletteInfo.querySelector(`[data-picker="colorPicker${i}"]`);
                 let initialColor = color.textContent;
                 let paletteTitle = paletteInfo.querySelector('.palette-title').textContent;
@@ -49,6 +51,12 @@ function load() {
                     })
                 }
             }
+
+            const deleteBtn = paletteInfo.querySelector('.delete-btn');
+            const paletteTitle = paletteInfo.firstChild.nextSibling.textContent;
+            deleteBtn.addEventListener('click', () => {
+                deletePalette(paletteTitle);
+            });
         });
     }
 }
@@ -62,6 +70,17 @@ function editLocalStorage(paletteTitle, colorValue, initialColor) {
     localStorage.setItem('allPalettes', JSON.stringify(loadExistingPalettes));
 }
 
+function deletePalette(paletteTitle) {
+    let loadExistingPalettes = JSON.parse(localStorage.getItem('allPalettes')) || [];
+    let palette = loadExistingPalettes.find((palette) => palette.title === paletteTitle);
+    let paletteIndex = loadExistingPalettes.findIndex((paletteToRemove) => paletteToRemove === palette);
+
+    loadExistingPalettes.splice(paletteIndex, 1);
+
+    localStorage.setItem('allPalettes', JSON.stringify(loadExistingPalettes));
+
+    window.location.href= 'library.html';
+}
 
 
 export { load };
