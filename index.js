@@ -1,15 +1,5 @@
 import { load } from './library.js';
 
-const color1 = document.getElementById('color1');
-const color2 = document.getElementById('color2');
-const color3 = document.getElementById('color3');
-const color4 = document.getElementById('color4');
-
-const colorPicker1 = document.getElementById('colorPicker1');
-const colorPicker2 = document.getElementById('colorPicker2');
-const colorPicker3 = document.getElementById('colorPicker3');
-const colorPicker4 = document.getElementById('colorPicker4');
-
 const saveBtn = document.getElementById('saveToLocalStorage');
 
 const singlePalette = {
@@ -62,4 +52,4 @@ function saveToLocalStorage() {
 };
 
 
-export { libraryWrapper, saveToLocalStorage, singlePalette, saveBtn };
+export { libraryWrapper, singlePalette };

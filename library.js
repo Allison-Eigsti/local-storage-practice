@@ -1,4 +1,4 @@
-import { libraryWrapper, saveToLocalStorage, singlePalette, saveBtn } from "./index.js";
+import { libraryWrapper, singlePalette } from "./index.js";
 
 
 function load() {
